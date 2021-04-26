@@ -3,11 +3,11 @@ entries:
   wagtail:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-04-26T17:45:58.05461868+02:00"
+    created: "2021-04-26T18:03:45.527451832+02:00"
     description: A Helm chart for Kubernetes for deploying a Wagtail
-    digest: d97a5d1136255697c6ac920c3e12110328424fa0076a8c97889ddc94b7dd6259
+    digest: b1a42286d2799c309bc5af21bf62a54223a2dc16742b73cd7e66cde72dc4dbb7
     name: wagtail
     urls:
-    - https://domibydzovsky.github.io/helm-chart/wagtail-0.1.0.tgz
+    - https://domibydzovsky.github.io/wagtail-chart/wagtail-0.1.0.tgz
     version: 0.1.0
-generated: "2021-04-26T17:45:58.053457059+02:00"
+generated: "2021-04-26T18:03:45.526193122+02:00"

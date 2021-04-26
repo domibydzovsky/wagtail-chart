@@ -36,17 +36,17 @@ Definition of environment variables of database
 */}}
 {{- define "deployment.database" -}}
 - name: DB_ENGINE
-  value: "django_zero_downtime_migrations.backends.postgres"
+  value: {{ .Values.db.engine }}
 - name: DB_DATABASE
-  value: {{ .Values.databaseName }}
+  value: {{ .Values.db.name }}
 - name: DB_USER
-  value: postgres
+  value: {{ .Values.db.user }}
 - name: DB_PASS
-  value: postgres
+  value: {{ .Values.db.pass }}
 - name: DB_HOST
-  value: "postgres-postgresql.postgres.svc.cluster.local"
+  value: {{ .Values.db.host }}
 - name: DB_PORT
-  value: "5432"
+  value: {{ .Values.db.port | quote }}
 {{- end }}
 
 {{/*
@@ -54,9 +54,9 @@ Definition of environment variables of database
 */}}
 {{- define "deployment.superdatabase" -}}
 - name: DB_SUPER_USER
-  value: postgres
+  value: {{ .Values.db.superuser }}
 - name: DB_SUPER_PASS
-  value: postgres
+  value: {{ .Values.db.superpass }}
 - name: DB_SUPER_DATABASE
-  value: main
+  value: {{ .Values.db.superdb }}
 {{- end }}
