@@ -1,0 +1,59 @@
+replicaCount: 1
+utilsContainer:
+  repository: domibydzovsky/postgresutils
+  tag: latest
+
+image:
+  repository: domibydzovsky/template
+  tag: latest
+  pullPolicy: Always
+
+secretKey: ""
+nameOverride: "template"
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+  paths:
+    - /
+  hosts: []
+  https:
+    enabled: false
+    email:
+#    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
+    secretName: tls-secret
+#  tls:
+#  - secretName: tls-secret
+#    hosts:
+#      - dbydzovsky.cz
+resources:
+   limits:
+    memory: 200Mi
+   requests:
+    cpu: 50m
+    memory: 200Mi
+livenessProbe:
+  initialDelaySeconds: 90
+nodeSelector: {}
+
+db:
+  engine: "django_zero_downtime_migrations.backends.postgres"
+  name: "main"
+  user:
+  pass:
+  host: "postgres-postgresql.postgres.svc.cluster.local"
+  port: 5432
+  superuser:
+  superpass:
+  superdb:
+
+tolerations: []
+
+affinity: {}

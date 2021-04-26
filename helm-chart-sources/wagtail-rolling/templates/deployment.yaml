@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "deployment.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "deployment.name" . }}
+    helm.sh/chart: {{ include "deployment.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "deployment.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "deployment.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      initContainers:
+        - name: {{ .Release.Name }}-db
+          image: {{ .Values.utilsContainer.repository }}:{{ .Values.utilsContainer.tag }}
+          imagePullPolicy: Always
+          env:
+          - name: DB_ACTIONS
+            value: CREATED_DATABASE
+          {{- include "deployment.database" . | nindent 10 }}
+          {{- include "deployment.superdatabase" . | nindent 10 }}
+        - name: {{ .Release.Name }}-init
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: SECRET_KEY
+            value: {{ .Values.secretKey }}
+          - name: MODE
+            value: setup
+          - name: DJANGO_SETTINGS_MODULE
+            value: mysite.settings.production
+          {{- include "deployment.database" . | nindent 10 }}
+      containers:
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          env:
+          - name: DJANGO_SETTINGS_MODULE
+            value: mysite.settings.production
+          - name: SECRET_KEY
+            value: "{{ .Values.secretKey }}"
+          {{- include "deployment.database" . | nindent 10 }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
