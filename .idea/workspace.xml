@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2741d89f-dff5-4b3d-99b9-292f248a4115" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/Chart.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume-claim.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume-claim.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/values.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +15,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="microk8s" />
+    <option name="namespace" value="template" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -29,13 +33,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -52,7 +57,7 @@
       <updated>1619451143584</updated>
       <workItem from="1619451145538" duration="2294000" />
       <workItem from="1619961058675" duration="1079000" />
-      <workItem from="1638612084838" duration="623000" />
+      <workItem from="1638612084838" duration="5397000" />
     </task>
     <servers />
   </component>

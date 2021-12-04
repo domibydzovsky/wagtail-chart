@@ -12,6 +12,9 @@ secretKey: ""
 nameOverride: "template"
 fullnameOverride: ""
 
+securityContext:
+  runAsUser: 1000
+
 service:
   type: ClusterIP
   port: 80
@@ -45,6 +48,7 @@ nodeSelector: {}
 
 persistence:
   enabled: false
+  chownVolume: false
   storageClass: ""
   capacity: 1Gi
 db:

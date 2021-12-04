@@ -6,6 +6,9 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.persistence.capacity }}
   storageClassName: {{ .Values.persistence.storageClass }}
   volumeName: {{ .Release.Name }}-media
 {{- end }}

@@ -22,9 +22,26 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       initContainers:
+        {{- if .Values.persistence.chownVolume }}
+        - name: {{ .Release.Name}}-permissions
+          image: {{ .Values.utilsContainer.repository }}:{{ .Values.utilsContainer.tag }}
+          imagePullPolicy: {{.Values.image.pullPolicy}}
+          securityContext:
+            privileged: true
+            runAsUser: 0
+            runAsGroup: 0
+          command:
+            - chown
+            - -R
+            - "1000"
+            - /mnt/storage
+          volumeMounts:
+            - name: mediadir
+              mountPath: /mnt/storage
+        {{- end }}
         - name: {{ .Release.Name }}-db
           image: {{ .Values.utilsContainer.repository }}:{{ .Values.utilsContainer.tag }}
-          imagePullPolicy: Always
+          imagePullPolicy: {{.Values.image.pullPolicy}}
           env:
           - name: DB_ACTIONS
             value: CREATED_DATABASE
@@ -41,6 +58,10 @@ spec:
           - name: DJANGO_SETTINGS_MODULE
             value: mysite.settings.production
           {{- include "deployment.database" . | nindent 10 }}
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+{{/*        {{ toYaml .Values.securityContext | nindent 8 }}*/}}
       containers:
         - name: {{ .Release.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

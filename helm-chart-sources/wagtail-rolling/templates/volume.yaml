@@ -4,7 +4,12 @@ kind: PersistentVolume
 metadata:
   name: {{ .Release.Name }}-media
 spec:
-  capacity: {{ .Values.persistence.capacity }}
-  persistentVolumeReclaimPolicy: Retain
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/var/snap/microk8s/common/default-storage/{{ .Release.Name }}"
+  capacity:
+    storage: {{ .Values.persistence.capacity }}
+  persistentVolumeReclaimPolicy:
   storageClassName: {{ .Values.persistence.storageClass }}
 {{- end }}
