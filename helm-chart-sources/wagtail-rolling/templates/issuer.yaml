@@ -1,8 +1,8 @@
-{{ if .Values.ingress.https.enabled }}
+{{- if .Values.createIssuer }}
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-issuer-{{ .Release.Name }}
+  name: {{ .Values.ingress.issuerName }}
 spec:
   acme:
     # You must replace this email address with your own.

@@ -21,10 +21,11 @@ service:
   type: ClusterIP
   port: 80
 
+createIssuer: false
 ingress:
+  issuerName: "letsencrypt-issuer"
   enabled: true
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+  annotations: {}
   paths:
     - /
   hosts: []
