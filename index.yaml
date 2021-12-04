@@ -3,7 +3,16 @@ entries:
   wagtail:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-12-04T17:10:59.595671324+01:00"
+    created: "2021-12-04T19:59:08.565135992+01:00"
+    description: A Helm chart for Kubernetes for deploying a Wagtail
+    digest: cce6010313ffa8a6e8d7037c78ac59a0c5a1f51df1883c969e2d4790608e05a5
+    name: wagtail
+    urls:
+    - https://domibydzovsky.github.io/wagtail-chart/wagtail-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2021-12-04T19:59:08.563359212+01:00"
     description: A Helm chart for Kubernetes for deploying a Wagtail
     digest: 8cd77fbeb2eaeec944ca540710d2156bfd621994ae2b3974c1ddc52e2da42c7e
     name: wagtail
@@ -12,7 +21,7 @@ entries:
     version: 0.1.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-12-04T17:10:59.594266576+01:00"
+    created: "2021-12-04T19:59:08.561951466+01:00"
     description: A Helm chart for Kubernetes for deploying a Wagtail
     digest: cfa743bd64609283b6987f74080a413ab96d4ddfc8ee0f9620687f7c1eb70b87
     name: wagtail
@@ -21,7 +30,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-12-04T17:10:59.581565788+01:00"
+    created: "2021-12-04T19:59:08.560473714+01:00"
     description: A Helm chart for Kubernetes for deploying a Wagtail
     digest: 9038aae91348c21b6d67d949895d3c109c76aadc1a604580280aec67f232a3aa
     name: wagtail
@@ -30,7 +39,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-12-04T17:10:59.578927857+01:00"
+    created: "2021-12-04T19:59:08.555897381+01:00"
     description: A Helm chart for Kubernetes for deploying a Wagtail
     digest: 4affaeddc0596774e016f41c9855e309ad39deec6709e13bf676df27f8d72fbb
     name: wagtail
@@ -39,11 +48,11 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-12-04T17:10:59.576256134+01:00"
+    created: "2021-12-04T19:59:08.553489751+01:00"
     description: A Helm chart for Kubernetes for deploying a Wagtail
     digest: b1a42286d2799c309bc5af21bf62a54223a2dc16742b73cd7e66cde72dc4dbb7
     name: wagtail
     urls:
     - https://domibydzovsky.github.io/wagtail-chart/wagtail-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-04T17:10:59.573403098+01:00"
+generated: "2021-12-04T19:59:08.542504753+01:00"

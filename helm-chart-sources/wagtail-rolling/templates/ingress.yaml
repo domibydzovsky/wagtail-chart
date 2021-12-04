@@ -10,9 +10,9 @@ metadata:
     helm.sh/chart: {{ include "deployment.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
     cert-manager.io/cluster-issuer: {{ .Values.ingress.issuerName }}
   {{- with .Values.ingress.annotations }}
-  annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
