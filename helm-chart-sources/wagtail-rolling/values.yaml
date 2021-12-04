@@ -43,6 +43,10 @@ livenessProbe:
   initialDelaySeconds: 90
 nodeSelector: {}
 
+persistence:
+  enabled: false
+  storageClass: ""
+  capacity: 1Gi
 db:
   engine: "django_zero_downtime_migrations.backends.postgres"
   name: "main"

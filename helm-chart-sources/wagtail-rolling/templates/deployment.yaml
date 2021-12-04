@@ -55,6 +55,11 @@ spec:
           - name: SECRET_KEY
             value: "{{ .Values.secretKey }}"
           {{- include "deployment.database" . | nindent 10 }}
+  {{- if .Values.persistence.enabled }}
+          volumeMounts:
+            - name: mediadir
+              mountPath: /app/media
+  {{- end }}
           livenessProbe:
             httpGet:
               path: /
@@ -78,3 +83,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+  {{- if .Values.persistence.enabled }}
+      volumes:
+      - name: mediadir
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-media
+  {{- end }}
