@@ -4,8 +4,7 @@
     <list default="true" id="2741d89f-dff5-4b3d-99b9-292f248a4115" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume-claim.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume-claim.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/volume.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/issuer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/issuer.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/values.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +56,7 @@
       <updated>1619451143584</updated>
       <workItem from="1619451145538" duration="2294000" />
       <workItem from="1619961058675" duration="1079000" />
-      <workItem from="1638612084838" duration="5397000" />
+      <workItem from="1638612084838" duration="7768000" />
     </task>
     <servers />
   </component>

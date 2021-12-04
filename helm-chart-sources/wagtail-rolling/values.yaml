@@ -3,6 +3,8 @@ utilsContainer:
   repository: domibydzovsky/postgresutils
   tag: latest
 
+dbActions: "CREATED_DATABASE"
+pullSecret: regcred
 image:
   repository: domibydzovsky/template
   tag: latest

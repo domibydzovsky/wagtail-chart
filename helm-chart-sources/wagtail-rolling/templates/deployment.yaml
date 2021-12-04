@@ -21,6 +21,8 @@ spec:
         app.kubernetes.io/name: {{ include "deployment.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.pullSecret }}
       initContainers:
         {{- if .Values.persistence.chownVolume }}
         - name: {{ .Release.Name}}-permissions
@@ -44,7 +46,7 @@ spec:
           imagePullPolicy: {{.Values.image.pullPolicy}}
           env:
           - name: DB_ACTIONS
-            value: CREATED_DATABASE
+            value: {{ .Values.dbActions }}
           {{- include "deployment.database" . | nindent 10 }}
           {{- include "deployment.superdatabase" . | nindent 10 }}
         - name: {{ .Release.Name }}-init
@@ -74,7 +76,7 @@ spec:
           - name: DJANGO_SETTINGS_MODULE
             value: mysite.settings.production
           - name: SECRET_KEY
-            value: "{{ .Values.secretKey }}"
+            value: "{{ required "You have to supply a secret key" .Values.secretKey }}"
           {{- include "deployment.database" . | nindent 10 }}
   {{- if .Values.persistence.enabled }}
           volumeMounts:
