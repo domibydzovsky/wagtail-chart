@@ -10,6 +10,9 @@ image:
   tag: latest
   pullPolicy: Always
 
+deployment:
+  annotations: {}
+
 secretKey: ""
 nameOverride: "template"
 fullnameOverride: ""
