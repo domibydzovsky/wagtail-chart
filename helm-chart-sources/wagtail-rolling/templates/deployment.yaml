@@ -7,12 +7,6 @@ metadata:
     helm.sh/chart: {{ include "deployment.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-  {{- if .Values.deployment.annotations }}
-  annotations:
-  {{- end }}
-    {{- with .Values.deployment.annotations }}
-      {{- toYaml . | nindent 4 }}
-    {{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -26,6 +20,10 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "deployment.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        {{- with .Values.deployment.labels }}
+          {{- toYaml . | nindent 4 }}
+        {{- end }}
     spec:
       imagePullSecrets:
         - name: {{ .Values.pullSecret }}
@@ -79,6 +77,10 @@ spec:
               containerPort: 8000
               protocol: TCP
           env:
+          {{- if .Values.ingress.enabled | and .Values.ingress.hosts }}
+          - name: BASE_URL
+            value: {{ .Values.ingress.hosts | first }}
+          {{- end }}
           - name: DJANGO_SETTINGS_MODULE
             value: mysite.settings.production
           - name: SECRET_KEY
