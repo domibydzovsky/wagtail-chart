@@ -20,6 +20,13 @@ fullnameOverride: ""
 securityContext:
   runAsUser: 1000
 
+google:
+  trackingId: ""
+  clientId: ""
+  recaptcha: ""
+
+sitename: ""
+
 service:
   type: ClusterIP
   port: 80

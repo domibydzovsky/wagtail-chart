@@ -77,9 +77,25 @@ spec:
               containerPort: 8000
               protocol: TCP
           env:
+          {{- if .Values.google.trackingId }}
+          - name: GOOGLE_TRACKING_ID
+            value: {{ .Values.google.trackingId }}
+          {{- end }}
+          {{- if .Values.google.clientId }}
+          - name: GOOGLE_CLIENT_ID
+            value: {{ .Values.google.clientId }}
+          {{- end }}
+          {{- if .Values.google.recaptcha }}
+          - name: GOOGLE_RECAPTCHA
+            value: {{ .Values.google.recaptcha }}
+          {{- end }}
+          {{- if .Values.sitename }}
+          - name: SITE_NAME
+            value: {{ .Values.sitename }}
+          {{- end }}
           {{- if .Values.ingress.enabled | and .Values.ingress.hosts }}
           - name: BASE_URL
-            value: {{ .Values.ingress.hosts | first }}
+            value: https://{{ .Values.ingress.hosts | first }}
           {{- end }}
           - name: DJANGO_SETTINGS_MODULE
             value: mysite.settings.production
