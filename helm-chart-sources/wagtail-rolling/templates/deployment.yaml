@@ -81,6 +81,10 @@ spec:
           - name: GOOGLE_TRACKING_ID
             value: {{ .Values.google.trackingId }}
           {{- end }}
+          {{- if .Values.google.recaptchaSecret }}
+          - name: GOOGLE_RECAPTCHA_SECRET
+            value: {{ .Values.google.recaptchaSecret }}
+          {{- end }}
           {{- if .Values.google.clientId }}
           - name: GOOGLE_CLIENT_ID
             value: {{ .Values.google.clientId }}

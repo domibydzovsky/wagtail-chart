@@ -24,6 +24,7 @@ google:
   trackingId: ""
   clientId: ""
   recaptcha: ""
+  recaptchaSecret: ""
 
 sitename: ""
 
