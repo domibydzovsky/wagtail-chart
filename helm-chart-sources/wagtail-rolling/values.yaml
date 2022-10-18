@@ -20,6 +20,9 @@ fullnameOverride: ""
 securityContext:
   runAsUser: 1000
 
+dbenv:
+  EXAMPLE: 1
+
 google:
   trackingId: ""
   clientId: ""

@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2741d89f-dff5-4b3d-99b9-292f248a4115" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/_helpers.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/_helpers.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-chart-sources/wagtail-rolling/values.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +64,8 @@
       <workItem from="1640790569917" duration="1038000" />
       <workItem from="1640849353787" duration="3509000" />
       <workItem from="1640941387818" duration="554000" />
+      <workItem from="1654351785795" duration="1485000" />
+      <workItem from="1666103751217" duration="3288000" />
     </task>
     <servers />
   </component>

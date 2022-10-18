@@ -50,6 +50,18 @@ Definition of environment variables of database
 {{- end }}
 
 {{/*
+Definition of s3
+*/}}
+{{- define "deployment.s3" -}}
+- name: AWS_STORAGE_BUCKET_NAME
+  value: {{ .Values.s3.bucketName }}
+- name: AWS_ACCESS_KEY_ID
+  value: {{ .Values.s3.accessKey }}
+- name: AWS_SECRET_ACCESS_KEY
+  value: {{ .Values.s3.secretKey }}
+{{- end }}
+
+{{/*
 Definition of environment variables of database
 */}}
 {{- define "deployment.superdatabase" -}}
