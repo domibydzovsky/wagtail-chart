@@ -50,6 +50,22 @@ Definition of environment variables of database
 {{- end }}
 
 {{/*
+Definition of email settings
+*/}}
+{{- define "deployment.email" -}}
+- name: EMAIL_BACKEND
+  value: {{ .Values.email.backend }}
+- name: EMAIL_HOST
+  value: {{ .Values.email.host }}
+- name: EMAIL_PORT
+  value: {{ .Values.email.port }}
+- name: EMAIL_HOST_USER
+  value: {{ .Values.email.user }}
+- name: EMAIL_HOST_PASSWORD
+  value: {{ .Values.email.password }}
+{{- end }}
+
+{{/*
 Definition of s3
 */}}
 {{- define "deployment.s3" -}}

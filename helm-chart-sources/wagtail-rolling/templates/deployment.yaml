@@ -76,6 +76,7 @@ spec:
             value: mysite.settings.production
           {{- include "deployment.database" . | nindent 10 }}
           {{- include "deployment.s3" . | nindent 10 }}
+          {{- include "deployment.email" . | nindent 10 }}
       securityContext:
         runAsUser: 1000
         fsGroup: 1000
@@ -93,10 +94,8 @@ spec:
           - name: GOOGLE_TRACKING_ID
             value: {{ .Values.google.trackingId }}
           {{- end }}
-          {{- if .Values.google.recaptchaSecret }}
           - name: GOOGLE_RECAPTCHA_SECRET
             value: {{ .Values.google.recaptchaSecret }}
-          {{- end }}
           {{- if .Values.google.clientId }}
           - name: GOOGLE_CLIENT_ID
             value: {{ .Values.google.clientId }}
@@ -119,6 +118,7 @@ spec:
             value: "{{ required "You have to supply a secret key" .Values.secretKey }}"
           {{- include "deployment.database" . | nindent 10 }}
           {{- include "deployment.s3" . | nindent 10 }}
+          {{- include "deployment.email" . | nindent 10 }}
           volumeMounts:
             - name: backup
               mountPath: /backup
