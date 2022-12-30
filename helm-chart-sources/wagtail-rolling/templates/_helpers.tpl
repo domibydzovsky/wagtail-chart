@@ -54,15 +54,15 @@ Definition of email settings
 */}}
 {{- define "deployment.email" -}}
 - name: EMAIL_BACKEND
-  value: {{ .Values.email.backend }}
+  value: {{ .Values.email.backend | quote }}
 - name: EMAIL_HOST
-  value: {{ .Values.email.host }}
+  value: {{ .Values.email.host | quote }}
 - name: EMAIL_PORT
-  value: {{ .Values.email.port }}
+  value: {{ .Values.email.port | quote }}
 - name: EMAIL_HOST_USER
-  value: {{ .Values.email.user }}
+  value: {{ .Values.email.user | quote }}
 - name: EMAIL_HOST_PASSWORD
-  value: {{ .Values.email.password }}
+  value: {{ .Values.email.password | quote }}
 {{- end }}
 
 {{/*

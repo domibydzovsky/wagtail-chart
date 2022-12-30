@@ -10,7 +10,7 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
-    type: RollingUpdate
+    type: {{ .Values.strategy }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "deployment.name" . }}
@@ -92,17 +92,17 @@ spec:
           env:
           {{- if .Values.google.trackingId }}
           - name: GOOGLE_TRACKING_ID
-            value: {{ .Values.google.trackingId }}
+            value: {{ .Values.google.trackingId | quote }}
           {{- end }}
           - name: GOOGLE_RECAPTCHA_SECRET
-            value: {{ .Values.google.recaptchaSecret }}
+            value: {{ .Values.google.recaptchaSecret | quote }}
           {{- if .Values.google.clientId }}
           - name: GOOGLE_CLIENT_ID
             value: {{ .Values.google.clientId }}
           {{- end }}
           {{- if .Values.google.recaptcha }}
           - name: GOOGLE_RECAPTCHA
-            value: {{ .Values.google.recaptcha }}
+            value: {{ .Values.google.recaptcha | quote }}
           {{- end }}
           {{- if .Values.sitename }}
           - name: SITE_NAME
@@ -122,18 +122,18 @@ spec:
           volumeMounts:
             - name: backup
               mountPath: /backup
-  {{- if .Values.persistence.enabled }}
             - name: mediadir
               mountPath: /app/media
-  {{- end }}
           livenessProbe:
+            timeoutSeconds: {{ .Values.livenessProbeTimeout }}
             httpGet:
-              path: /
+              path: {{.Values.probePath}}
               port: http
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           readinessProbe:
+            timeoutSeconds: {{ .Values.healthProbeTimeout }}
             httpGet:
-              path: /
+              path: {{.Values.probePath}}
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -149,11 +149,15 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-  {{- if .Values.persistence.enabled }}
       volumes:
       - name: backup
         emptyDir: {}
+    {{- if .Values.persistence.enabled }}
       - name: mediadir
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-media
-  {{- end }}
+    {{- else }}
+      - name: mediadir
+        emptyDir: {}
+    {{- end }}
+
