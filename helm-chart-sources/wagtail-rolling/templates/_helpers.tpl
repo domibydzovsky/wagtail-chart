@@ -88,3 +88,13 @@ Definition of environment variables of database
 - name: DB_SUPER_DATABASE
   value: {{ .Values.db.superdb }}
 {{- end }}
+
+
+{{/*
+Definition of trusted origin
+*/}}
+{{- define "deployment.computed" -}}
+- name: CSRF_TRUSTED_ORIGINS
+  value: "{{ join "," .Values.ingress.hosts }}"
+{{- end }}
+

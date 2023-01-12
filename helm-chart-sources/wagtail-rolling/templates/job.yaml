@@ -1,0 +1,43 @@
+{{- if .Values.scheduleBackup.enabled }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: regular-backup
+spec:
+  schedule: {{ .Values.scheduleBackup.cron | quote }}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: {{ .Values.pullSecret }}
+          containers:
+            - name: {{ .Release.Name }}-regular-backup
+              image: {{ .Values.utilsContainer.repository }}:{{ .Values.utilsContainer.tag }}
+              imagePullPolicy: {{.Values.image.pullPolicy}}
+              env:
+              - name: DB_ACTIONS
+                value: "CREATED_BACKUP,COPIED_TO_S3"
+              {{- include "deployment.database" . | nindent 14 }}
+              {{- include "deployment.computed" . | nindent 14 }}
+              {{- include "deployment.superdatabase" . | nindent 14 }}
+              - name: BACKUP_TARGET_DIR
+                value: /backup
+            {{- if $.Values.dbenv }}
+              {{- range $key, $value := $.Values.dbenv }}
+              - name: {{ $key }}
+                value: {{ $value | quote }}
+              {{- end }}
+            {{- end }}
+              volumeMounts:
+                - name: backup
+                  mountPath: /backup
+          restartPolicy: OnFailure
+          securityContext:
+            runAsUser: 1000
+            fsGroup: 1000
+          volumes:
+            - name: backup
+              emptyDir: {}
+{{- end }}

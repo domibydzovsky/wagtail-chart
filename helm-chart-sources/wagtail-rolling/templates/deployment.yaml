@@ -52,6 +52,7 @@ spec:
           - name: DB_ACTIONS
             value: {{ .Values.dbActions }}
           {{- include "deployment.database" . | nindent 10 }}
+          {{- include "deployment.computed" . | nindent 10 }}
           {{- include "deployment.superdatabase" . | nindent 10 }}
           - name: BACKUP_TARGET_DIR
             value: /backup
@@ -75,6 +76,7 @@ spec:
           - name: DJANGO_SETTINGS_MODULE
             value: mysite.settings.production
           {{- include "deployment.database" . | nindent 10 }}
+          {{- include "deployment.computed" . | nindent 10 }}
           {{- include "deployment.s3" . | nindent 10 }}
           {{- include "deployment.email" . | nindent 10 }}
       securityContext:
@@ -117,6 +119,7 @@ spec:
           - name: SECRET_KEY
             value: "{{ required "You have to supply a secret key" .Values.secretKey }}"
           {{- include "deployment.database" . | nindent 10 }}
+          {{- include "deployment.computed" . | nindent 10 }}
           {{- include "deployment.s3" . | nindent 10 }}
           {{- include "deployment.email" . | nindent 10 }}
           volumeMounts:
